@@ -144,7 +144,7 @@ a.button {
         room_status = JSON.parse(this.response)
         // debugger;
 
-        if (x.room_status == false){
+        if (room_status.room_status == false){
             document.getElementsByClassName('in')[0].hidden = false;
             document.getElementsByClassName('out')[0].hidden = true;
         }else{
