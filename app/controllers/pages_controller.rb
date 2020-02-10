@@ -5,7 +5,6 @@ class PagesController < ApplicationController
   end
 
   def chage_status
-    # debugger;
     x = Room.last
     x.status = !x.status
     x.save

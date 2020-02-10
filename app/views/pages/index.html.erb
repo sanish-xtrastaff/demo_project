@@ -86,39 +86,33 @@
 
 </style>
 <h1>Welcome</h1>
-<!-- <a id="txtHint" href="" title="Button push blue/green" class="button btnPush btnBlueGreen" onclick="showHint();">Push</a> -->
-
 <div class="container">
   <button class="btn success" onclick="showHint();">PUSH</button>
   <div class="led-box out" <%= 'hidden' if @room_status %> >
     <div class="led-green"></div>
     <p>OUT</p>
   </div>
-
   <div class="led-box in" <%= 'hidden' unless @room_status %> >
     <div class="led-red"></div>
     <p>IN</p>
   </div>
 </div>
 <script type="text/javascript">
- function showHint() {
+  function showHint() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         room_status = JSON.parse(this.response)
-        // debugger;
-
         if (room_status.room_status == false){
-            document.getElementsByClassName('in')[0].hidden = false;
-            document.getElementsByClassName('out')[0].hidden = true;
-        }else{
-            document.getElementsByClassName('in')[0].hidden = true;
             document.getElementsByClassName('out')[0].hidden = false;
+            document.getElementsByClassName('in')[0].hidden = true;
+        }else{
+            document.getElementsByClassName('out')[0].hidden = true;
+            document.getElementsByClassName('in')[0].hidden = false;
         }
-        // document.getElementById("txtHint").innerHTML = this.responseText;
       }
     };
     xmlhttp.open("GET", "/chage_status", true);
     xmlhttp.send();
-}
+  }
 </script>
